@@ -10,6 +10,7 @@
   import Dashboard from '@routes/Dashboard.svelte'
   import Collections from '@routes/Collections.svelte'
   import CollectionDetail from '@routes/CollectionDetail.svelte'
+  import Documents from '@routes/Documents.svelte'
   import QueryExplorer from '@routes/QueryExplorer.svelte'
 
   // Register routes
@@ -17,6 +18,7 @@
     { path: '/login', component: Login, title: 'Login' },
     { path: '/', component: Dashboard, requiresAuth: true, title: 'Dashboard' },
     { path: '/collections', component: Collections, requiresAuth: true, title: 'Collections' },
+    { path: '/collections/:name/documents', component: Documents, requiresAuth: true, title: 'Documents' },
     { path: '/collections/:name', component: CollectionDetail, requiresAuth: true, title: 'Collection Detail' },
     { path: '/query', component: QueryExplorer, requiresAuth: true, title: 'Query Explorer' },
   ])
