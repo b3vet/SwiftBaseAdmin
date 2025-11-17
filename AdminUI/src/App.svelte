@@ -16,6 +16,7 @@
   import Files from '@routes/Files.svelte'
   import Realtime from '@routes/Realtime.svelte'
   import APITester from '@routes/APITester.svelte'
+  import Settings from '@routes/Settings.svelte'
 
   // Register routes
   router.registerRoutes([
@@ -29,6 +30,7 @@
     { path: '/files', component: Files, requiresAuth: true, title: 'Files' },
     { path: '/realtime', component: Realtime, requiresAuth: true, title: 'Realtime Monitor' },
     { path: '/api-tester', component: APITester, requiresAuth: true, title: 'API Tester' },
+    { path: '/settings', component: Settings, requiresAuth: true, title: 'Settings' },
   ])
 
   // Initialize router on mount
