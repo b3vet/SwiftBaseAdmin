@@ -14,6 +14,7 @@
   import QueryExplorer from '@routes/QueryExplorer.svelte'
   import Users from '@routes/Users.svelte'
   import Files from '@routes/Files.svelte'
+  import Realtime from '@routes/Realtime.svelte'
 
   // Register routes
   router.registerRoutes([
@@ -25,6 +26,7 @@
     { path: '/query', component: QueryExplorer, requiresAuth: true, title: 'Query Explorer' },
     { path: '/users', component: Users, requiresAuth: true, title: 'Users' },
     { path: '/files', component: Files, requiresAuth: true, title: 'Files' },
+    { path: '/realtime', component: Realtime, requiresAuth: true, title: 'Realtime Monitor' },
   ])
 
   // Initialize router on mount
