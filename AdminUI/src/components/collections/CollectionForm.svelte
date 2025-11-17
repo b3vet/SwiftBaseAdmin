@@ -177,7 +177,7 @@
     </div>
     <Textarea
       bind:value={schemaJson}
-      placeholder='{"type": "object", "properties": {...}}'
+      placeholder={'{"type": "object", "properties": {}}'}
       error={errors.schema}
       rows={6}
       disabled={isLoading}
@@ -206,7 +206,7 @@
     </div>
     <Textarea
       bind:value={indexesJson}
-      placeholder='{"email": "unique", "created_at": "index"}'
+      placeholder={'{"email": "unique", "created_at": "index"}'}
       error={errors.indexes}
       rows={4}
       disabled={isLoading}
@@ -235,7 +235,7 @@
     </div>
     <Textarea
       bind:value={optionsJson}
-      placeholder='{"timestamps": true, "softDelete": false}'
+      placeholder={'{"timestamps": true, "softDelete": false}'}
       error={errors.options}
       rows={4}
       disabled={isLoading}

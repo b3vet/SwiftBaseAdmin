@@ -19,12 +19,11 @@
   const count = $derived(result?.count ?? (isArray ? result.data.length : null))
 
   // Extract column headers from array data
-  const columns = $derived(() => {
-    if (!isArray || !result.data || result.data.length === 0) return []
-
-    const firstItem = result.data[0]
-    return Object.keys(firstItem).slice(0, 10) // Limit to first 10 columns
-  })()
+  const columns = $derived(
+    (!isArray || !result.data || result.data.length === 0)
+      ? []
+      : Object.keys(result.data[0]).slice(0, 10) // Limit to first 10 columns
+  )
 
   function formatValue(value: any): string {
     if (value === null || value === undefined) return '-'

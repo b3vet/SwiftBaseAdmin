@@ -12,6 +12,7 @@
   import CollectionDetail from '@routes/CollectionDetail.svelte'
   import Documents from '@routes/Documents.svelte'
   import QueryExplorer from '@routes/QueryExplorer.svelte'
+  import Users from '@routes/Users.svelte'
 
   // Register routes
   router.registerRoutes([
@@ -21,6 +22,7 @@
     { path: '/collections/:name/documents', component: Documents, requiresAuth: true, title: 'Documents' },
     { path: '/collections/:name', component: CollectionDetail, requiresAuth: true, title: 'Collection Detail' },
     { path: '/query', component: QueryExplorer, requiresAuth: true, title: 'Query Explorer' },
+    { path: '/users', component: Users, requiresAuth: true, title: 'Users' },
   ])
 
   // Initialize router on mount

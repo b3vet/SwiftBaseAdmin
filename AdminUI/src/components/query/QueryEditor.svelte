@@ -202,7 +202,7 @@
         ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
         : 'border-secondary-300 focus:border-primary-500 focus:ring-primary-500'} px-4 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-offset-1 transition-colors resize-y"
       rows={12}
-      placeholder='{\n  "where": { "field": "value" },\n  "limit": 20\n}'
+      placeholder={'{\n  "where": { "field": "value" },\n  "limit": 20\n}'}
       disabled={isLoading}
       spellcheck={false}
     ></textarea>
@@ -251,7 +251,7 @@
           ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
           : 'border-secondary-300 focus:border-primary-500 focus:ring-primary-500'} px-4 py-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-offset-1 transition-colors resize-y"
         rows={8}
-        placeholder='{\n  "field": "value"\n}'
+        placeholder={'{\n  "field": "value"\n}'}
         disabled={isLoading}
         spellcheck={false}
       ></textarea>

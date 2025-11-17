@@ -67,10 +67,12 @@
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {#each collections as collection (collection.id)}
         <Card hover padding={false}>
-          <button
-            type="button"
-            class="w-full text-left p-6"
+          <div
+            class="w-full text-left p-6 cursor-pointer"
             onclick={() => handleCollectionClick(collection)}
+            role="button"
+            tabindex="0"
+            onkeydown={(e) => e.key === 'Enter' && handleCollectionClick(collection)}
           >
             <div class="flex items-start justify-between">
               <div class="flex items-center">
@@ -119,7 +121,7 @@
                 <Badge variant="info" size="sm">Has Schema</Badge>
               </div>
             {/if}
-          </button>
+          </div>
         </Card>
       {/each}
     </div>
