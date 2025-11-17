@@ -28,14 +28,14 @@ A modern, feature-rich admin interface for SwiftBase built with Svelte 5, TypeSc
 
 ### Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 18+ and pnpm
 - SwiftBase backend server running
 
 ### Installation
 
 ```bash
 cd AdminUI
-npm install
+pnpm install
 ```
 
 ### Development
@@ -43,7 +43,7 @@ npm install
 Run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 The admin UI will be available at `http://localhost:5173`
@@ -53,7 +53,7 @@ The admin UI will be available at `http://localhost:5173`
 Build for production:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Build output: `../Sources/SwiftBase/Resources/Public/`
@@ -65,7 +65,7 @@ The built assets are automatically bundled with the Swift binary.
 Run TypeScript type checking:
 
 ```bash
-npm run check
+pnpm check
 ```
 
 ## ⚙️ Configuration

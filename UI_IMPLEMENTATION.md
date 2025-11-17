@@ -111,7 +111,7 @@ AdminUI/
 
 #### 1.1 Initialize Svelte 5 + Vite Project
 - [ ] Create AdminUI directory
-- [ ] Initialize npm project with `npm create vite@latest`
+- [ ] Initialize pnpm project with `pnpm create vite@latest`
 - [ ] Select Svelte + TypeScript template
 - [ ] Install core dependencies
 - [ ] Configure TypeScript for strict mode
@@ -627,14 +627,14 @@ export const auth = (() => {
 ### Development Build
 ```bash
 cd AdminUI
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 ### Production Build
 ```bash
 cd AdminUI
-npm run build
+pnpm build
 # Output: ../Sources/SwiftBase/Resources/Public/
 ```
 
