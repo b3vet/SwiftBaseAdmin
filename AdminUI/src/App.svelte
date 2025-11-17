@@ -1,47 +1,82 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import { onMount } from 'svelte'
+  import { router } from '@lib/router.svelte'
+  import { authStore, notificationsStore } from '@lib/stores'
+  import { Layout } from '@components/layout'
+  import { Spinner, Alert } from '@components/common'
+
+  // Import route components
+  import Login from '@routes/Login.svelte'
+  import Dashboard from '@routes/Dashboard.svelte'
+  import Collections from '@routes/Collections.svelte'
+  import QueryExplorer from '@routes/QueryExplorer.svelte'
+
+  // Register routes
+  router.registerRoutes([
+    { path: '/login', component: Login, title: 'Login' },
+    { path: '/', component: Dashboard, requiresAuth: true, title: 'Dashboard' },
+    { path: '/collections', component: Collections, requiresAuth: true, title: 'Collections' },
+    { path: '/query', component: QueryExplorer, requiresAuth: true, title: 'Query Explorer' },
+  ])
+
+  // Initialize router on mount
+  onMount(() => {
+    router.init()
+  })
+
+  // Get current route component
+  const currentComponent = $derived(router.currentRoute?.component)
+  const requiresAuth = $derived(router.currentRoute?.requiresAuth ?? false)
 </script>
 
-<main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
+<!-- Notification Container -->
+{#if notificationsStore.count > 0}
+  <div class="fixed top-4 right-4 z-50 space-y-2 max-w-md">
+    {#each notificationsStore.notifications as notification (notification.id)}
+      <Alert
+        type={notification.type}
+        dismissible={notification.dismissible}
+        ondismiss={() => notificationsStore.remove(notification.id)}
+      >
+        {notification.message}
+      </Alert>
+    {/each}
   </div>
-  <h1>Vite + Svelte</h1>
+{/if}
 
-  <div class="card">
-    <Counter />
+<!-- Main App -->
+{#if authStore.isLoading}
+  <!-- Loading State -->
+  <div class="min-h-screen flex items-center justify-center bg-secondary-50">
+    <div class="text-center">
+      <Spinner size="xl" />
+      <p class="mt-4 text-secondary-600">Loading SwiftBase...</p>
+    </div>
   </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
-
-<style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
-</style>
+{:else if currentComponent}
+  <!-- Render Route Component -->
+  {#if requiresAuth}
+    <!-- Authenticated Routes with Layout -->
+    <Layout>
+      <svelte:component this={currentComponent} />
+    </Layout>
+  {:else}
+    <!-- Public Routes without Layout -->
+    <svelte:component this={currentComponent} />
+  {/if}
+{:else}
+  <!-- 404 Not Found -->
+  <div class="min-h-screen flex items-center justify-center bg-secondary-50">
+    <div class="text-center">
+      <h1 class="text-6xl font-bold text-secondary-900">404</h1>
+      <p class="mt-4 text-xl text-secondary-600">Page not found</p>
+      <button
+        type="button"
+        class="mt-6 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
+        onclick={() => router.navigate('/')}
+      >
+        Go Home
+      </button>
+    </div>
+  </div>
+{/if}
