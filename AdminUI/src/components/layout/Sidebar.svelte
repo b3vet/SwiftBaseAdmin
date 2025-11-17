@@ -67,6 +67,10 @@
   <div
     class="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
     onclick={() => themeStore.setSidebarCollapsed(true)}
+    onkeydown={(e) => e.key === 'Escape' && themeStore.setSidebarCollapsed(true)}
+    role="button"
+    tabindex="0"
+    aria-label="Close navigation menu"
   ></div>
 {/if}
 
